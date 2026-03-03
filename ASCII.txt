@@ -1,0 +1,125 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    ORCHESTRATOR AGENT — LANGGRAPH WORKFLOW                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+                              ┌─────────┐
+                              │  START  │
+                              └────┬────┘
+                                   │
+                                   ▼
+                    ╔══════════════════════════════╗
+                    ║      guardrail_check         ║
+                    ║  (AWS Bedrock Guardrails)     ║
+                    ║                              ║
+                    ║  • No guardrail ID set?      ║
+                    ║    → skip, pass-through      ║
+                    ║  • action = NONE             ║
+                    ║    → pass-through            ║
+                    ║  • action = INTERVENED       ║
+                    ║    ├─ hard BLOCKED           ║
+                    ║    │   → sets final_answer   ║
+                    ║    │   → guardrail_blocked=T ║
+                    ║    └─ PII only               ║
+                    ║        → redacts query text  ║
+                    ║        → continues           ║
+                    ╚══════════════╤═══════════════╝
+                                   │
+                          [guardrail_router]
+                         (conditional edge)
+                    ┌──────────────┴──────────────┐
+                    │                             │
+             guardrail_blocked=True       guardrail_blocked=False
+                    │                             │
+                    ▼                             ▼
+                 ┌─────┐              ╔═══════════════════════╗
+                 │ END │              ║       analyzer        ║
+                 └─────┘              ║  (intent_analyzer)    ║
+                                      ║                       ║
+                                      ║  Calls Bedrock LLM    ║
+                                      ║  with:                ║
+                                      ║  • system prompt      ║
+                                      ║    (tools list)       ║
+                                      ║  • user query         ║
+                                      ║                       ║
+                                      ║  Returns:             ║
+                                      ║  • tool_name          ║
+                                      ║  • confidence (0–10)  ║
+                                      ║  • reasoning          ║
+                                      ╚═══════════╤═══════════╝
+                                                   │
+                                       [guard_rails_router]
+                                        (conditional edge)
+                     ┌─────────────────────┬───────┴──────────────────┐
+                     │                     │                          │
+              tool_name="NO_TOOL"   confidence < 7.0          confidence >= 7.0
+                     │            (tool_name present)         + valid tool_name
+                     │                     │                          │
+                     └──────────┬──────────┘                         ▼
+                                │                      ╔══════════════════════╗
+                                ▼                      ║      IBTAgent        ║  ← dynamic node,
+                    ╔═══════════════════╗              ║  (tool_node_factory) ║    name from YAML
+                    ║     fallback      ║              ║                      ║
+                    ║                   ║              ║  Currently: MOCK     ║
+                    ║  Selects message: ║              ║  response returned   ║
+                    ║  • no_tool_found  ║              ║  (httpx stub ready   ║
+                    ║  • low_confidence ║              ║   for real calls)    ║
+                    ║  • service_       ║              ║                      ║
+                    ║    unavailable    ║              ║  try:                ║
+                    ║    (on error)     ║              ║    _call_tool_mock() ║
+                    ╚═════════╤═════════╝              ║  except:             ║
+                              │                        ║    ToolTimeoutError  ║
+                              │                        ║    ToolUnavailable   ║
+                              │                        ║    Exception         ║
+                              │                        ╚══════════╤═══════════╝
+                              │                                   │
+                              │                        [post_tool_router]
+                              │                         (conditional edge)
+                              │               ┌──────────────────┴────────────┐
+                              │               │                               │
+                              │      tool_result.success=False         tool_result.success=True
+                              │      (or exception raised)                    │
+                              │               │                               │
+                              │               └──────────────┐                ▼
+                              │                              │             ┌─────┐
+                              │                              ▼             │ END │
+                              │                    ╔═══════════════════╗   └─────┘
+                              │                    ║     fallback      ║
+                              │                    ║  (service_unavail)║
+                              │                    ╚═════════╤═════════╝
+                              │                              │
+                              └──────────────────────────────┘
+                                                             │
+                                                             ▼
+                                                          ┌─────┐
+                                                          │ END │
+                                                          └─────┘
+
+══════════════════════════════════════════════════════════════════════════════
+  EDGE LEGEND
+══════════════════════════════════════════════════════════════════════════════
+  ──────►   Regular edge        (always follows this path)
+  ─ ─ ─►   Conditional edge     (router function decides)
+  ╔════╗   Graph node           (code runs here, reads/writes state)
+  [    ]   Router function      (returns a string = next node name)
+
+══════════════════════════════════════════════════════════════════════════════
+  STATE FIELDS WRITTEN AT EACH NODE
+══════════════════════════════════════════════════════════════════════════════
+  guardrail_check  →  guardrail_blocked, guardrail_action, [query, final_answer]
+  analyzer         →  selected_tool { tool_name, confidence, reasoning }
+  IBTAgent         →  tool_result, final_answer, tool_metadata, [error]
+  fallback         →  final_answer
+
+══════════════════════════════════════════════════════════════════════════════
+  DYNAMIC TOOL NODES  (auto-registered from tools.yaml at startup)
+══════════════════════════════════════════════════════════════════════════════
+  Current tools:     IBTAgent
+  Adding a tool:     Add entry to tools.yaml → new node appears automatically
+                     No Python code changes needed
+
+══════════════════════════════════════════════════════════════════════════════
+  FALLBACK TRIGGERS & MESSAGES
+══════════════════════════════════════════════════════════════════════════════
+  tool_name = "NO_TOOL"        →  "couldn't find the right resource..."
+  confidence < 7.0             →  "not entirely sure I understand..."
+  tool_result.success = False  →  "experiencing technical difficulties..."
