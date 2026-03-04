@@ -69,71 +69,80 @@ Return:
 
 
 
-Gemini said
-AWS Bedrock Guardrail Node Documentation
-File: src/graph/nodes/guardrail_node.py
+**AWS Bedrock Guardrail Node Documentation**
 
-Role: First node in the graph; runs before the LLM on every request.
+**File:** `src/graph/nodes/guardrail_node.py`
+**Role:** First node in the graph; runs before the LLM on every request.
 
-1. Overview
+---
+
+### 1. Overview
+
 The guardrail node is a pre-flight safety check. Before the orchestrator sends any user input to the LLM, this node submits the raw query to AWS Bedrock Guardrails. It makes one of three decisions:
 
-Content is clean (action = NONE): Pass through unchanged and continue to the intent analyzer.
+* **Content is clean (action = NONE):** Pass through unchanged and continue to the intent analyzer.
+* **Hard block (action = INTERVENED + blocked policy):** Short-circuit the process, set the final_answer, skip the LLM entirely, and go to END.
+* **PII only (action = INTERVENED + PII masking):** Redact PII in the query and continue to the analyzer with the redacted text.
 
-Hard block (action = INTERVENED + blocked policy): Short-circuit the process, set the final_answer, skip the LLM entirely, and go to END.
+---
 
-PII only (action = INTERVENED + PII masking): Redact PII in the query and continue to the analyzer with the redacted text.
+### 2. Graph Placement
 
-2. Graph Placement
-The node is registered in workflow.py as the entry point. A router determines if the process should terminate or proceed.
+The node is registered in `workflow.py` as the entry point. A router determines if the process should terminate or proceed.
 
-Entry Point: guardrail_check
+* **Entry Point:** `guardrail_check`
+* **Conditional Path:**
+* If `blocked = True`, move to **END**.
+* If `blocked = False`, move to **analyzer**.
 
-Conditional Path:
 
-If blocked = True, move to END.
 
-If blocked = False, move to analyzer.
+---
 
-3. Implementation Details
-Configuration
-The guardrail is disabled by default. It activates only when AWS_BEDROCK_GUARDRAIL_ID is set in the environment or .env file. If the ID is missing, the node returns immediately without making an AWS call.
+### 3. Implementation Details
 
-The API Call
-The node uses the apply_guardrail method from the Bedrock API. This is a direct API call and does not invoke an LLM or consume LLM tokens. It requires the Guardrail Identifier, Version, and the input text.
+#### Configuration
 
-Decision Logic
+The guardrail is disabled by default. It activates only when `AWS_BEDROCK_GUARDRAIL_ID` is set in the environment or `.env` file. If the ID is missing, the node returns immediately without making an AWS call.
+
+#### The API Call
+
+The node uses the `apply_guardrail` method from the Bedrock API. This is a direct API call and does not invoke an LLM or consume LLM tokens. It requires the Guardrail Identifier, Version, and the input text.
+
+#### Decision Logic
+
 The node evaluates the response from AWS:
 
-If the action is NONE, the state is marked as not blocked.
+1. If the action is `NONE`, the state is marked as not blocked.
+2. If the action is `INTERVENED`, the node inspects the `assessments` array to distinguish between a hard block (e.g., hate speech, restricted topics) and simple PII masking.
+3. If a hard block is detected, it returns a `BLOCKED` status and a default refusal message.
+4. If only PII is detected, it replaces the user's query with the masked version and allows the workflow to continue.
 
-If the action is INTERVENED, the node inspects the assessments array to distinguish between a hard block (e.g., hate speech, restricted topics) and simple PII masking.
+---
 
-If a hard block is detected, it returns a BLOCKED status and a default refusal message.
+### 4. Error Handling
 
-If only PII is detected, it replaces the user's query with the masked version and allows the workflow to continue.
+The system handles AWS API failures (such as `ClientError` or `BotoCoreError`) by raising a `GuardrailError`. This is caught by the Orchestrator and results in a `success: false` response. The system does not allow requests to fail-open; a failed guardrail check prevents the LLM from processing the query.
 
-4. Error Handling
-The system handles AWS API failures (such as ClientError or BotoCoreError) by raising a GuardrailError. This is caught by the Orchestrator and results in a success: false response. The system does not allow requests to "fail-open"; a failed guardrail check prevents the LLM from processing the query.
+---
 
-5. State Management
-The following fields are updated in the OrchestratorState:
+### 5. State Management
 
-guardrail_blocked (bool): Set to True only on a hard policy violation.
+The following fields are updated in the `OrchestratorState`:
 
-guardrail_action (str): Tracks the outcome (NONE, BLOCKED, or PII_MASKED).
+* **guardrail_blocked (bool):** Set to True only on a hard policy violation.
+* **guardrail_action (str):** Tracks the outcome (NONE, BLOCKED, or PII_MASKED).
+* **final_answer (str):** Populated only during a hard block to provide the refusal message.
+* **query (str):** Overwritten with redacted text if PII masking occurs.
 
-final_answer (str): Populated only during a hard block to provide the refusal message.
+---
 
-query (str): Overwritten with redacted text if PII masking occurs.
+### 6. Involved Files
 
-6. Involved Files
-src/graph/nodes/guardrail_node.py: Contains the node logic and router function.
+* **src/graph/nodes/guardrail_node.py:** Contains the node logic and router function.
+* **src/llm/client.py:** Contains the Boto3 API wrapper.
+* **src/graph/workflow.py:** Handles node registration and edge wiring.
+* **src/config/settings.py:** Manages environment variables for Guardrail IDs.
+* **src/schemas/state.py:** Defines the schema for guardrail state fields.
 
-src/llm/client.py: Contains the Boto3 API wrapper.
-
-src/graph/workflow.py: Handles node registration and edge wiring.
-
-src/config/settings.py: Manages environment variables for Guardrail IDs.
-
-src/schemas/state.py: Defines the schema for guardrail state fields.
+Would you like me to generate a test suite template for this node to verify these three logic paths?
