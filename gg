@@ -1,0 +1,110 @@
+import boto3
+import json
+
+# Step 1: Assume the Bedrock account role
+sts_client = boto3.client("sts")
+
+assumed_role = sts_client.assume_role(
+    RoleArn="arn:aws:iam::<BEDROCK_ACCOUNT_ID>:role/<BedrockCrossAccountRole>",
+    RoleSessionName="SageMakerGuardrailSession"
+)
+
+credentials = assumed_role["Credentials"]
+
+# Step 2: Create Bedrock client using assumed role credentials
+bedrock_client = boto3.client(
+    "bedrock",
+    region_name="us-east-1",
+    aws_access_key_id=credentials["AccessKeyId"],
+    aws_secret_access_key=credentials["SecretAccessKey"],
+    aws_session_token=credentials["SessionToken"]
+)
+
+# Step 3: Create the guardrail
+response = bedrock_client.create_guardrail(
+    name="my-guardrail",
+    description="Guardrail to filter harmful content",
+    blockedInputMessaging="Sorry, I cannot process this request.",
+    blockedOutputsMessaging="Sorry, I cannot return this response.",
+
+    # Content filters
+    contentPolicyConfig={
+        "filtersConfig": [
+            {
+                "type": "HATE",
+                "inputStrength": "HIGH",
+                "outputStrength": "HIGH"
+            },
+            {
+                "type": "VIOLENCE",
+                "inputStrength": "MEDIUM",
+                "outputStrength": "MEDIUM"
+            },
+            {
+                "type": "SEXUAL",
+                "inputStrength": "HIGH",
+                "outputStrength": "HIGH"
+            },
+            {
+                "type": "INSULTS",
+                "inputStrength": "MEDIUM",
+                "outputStrength": "MEDIUM"
+            },
+            {
+                "type": "MISCONDUCT",
+                "inputStrength": "MEDIUM",
+                "outputStrength": "MEDIUM"
+            },
+            {
+                "type": "PROMPT_ATTACK",
+                "inputStrength": "HIGH",
+                "outputStrength": "NONE"  # Prompt attacks only relevant on input
+            }
+        ]
+    },
+
+    # Denied topics
+    topicPolicyConfig={
+        "topicsConfig": [
+            {
+                "name": "Financial Advice",
+                "definition": "Providing specific financial or investment advice to users.",
+                "examples": [
+                    "Should I buy Tesla stock?",
+                    "What crypto should I invest in?"
+                ],
+                "type": "DENY"
+            }
+        ]
+    },
+
+    # PII / sensitive info
+    sensitiveInformationPolicyConfig={
+        "piiEntitiesConfig": [
+            {"type": "EMAIL", "action": "ANONYMIZE"},
+            {"type": "PHONE", "action": "ANONYMIZE"},
+            {"type": "SSN", "action": "BLOCK"}
+        ]
+    },
+
+    # Word filters
+    wordPolicyConfig={
+        "wordsConfig": [
+            {"text": "competitor_name"},
+            {"text": "badword"}
+        ],
+        "managedWordListsConfig": [
+            {"type": "PROFANITY"}
+        ]
+    },
+
+    tags=[
+        {"key": "Environment", "value": "production"},
+        {"key": "CreatedBy", "value": "sagemaker"}
+    ]
+)
+
+print("Guardrail created:")
+print(f"  ID:      {response['guardrailId']}")
+print(f"  ARN:     {response['guardrailArn']}")
+print(f"  Version: {response['version']}")
