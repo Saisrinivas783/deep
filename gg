@@ -156,3 +156,15 @@ if __name__ == "__main__":
     
     print(f"New version created: {version_response['version']}")
     print(f"Guardrail ID: {version_response['guardrailId']}")
+
+====
+
+            'piiEntitiesConfig': [
+                {
+                    'type': 'EMAIL',
+                    'action': 'ANONYMIZE',        # ⚠️ Legacy field (required but not used)
+                    'inputAction': 'NONE',        # ✅ Allow emails in user input
+                    'outputAction': 'ANONYMIZE',  # ✅ Mask emails in AI responses
+                    'inputEnabled': True,
+                    'outputEnabled': True
+                },
