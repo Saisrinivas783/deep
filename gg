@@ -108,3 +108,37 @@ print("Guardrail created:")
 print(f"  ID:      {response['guardrailId']}")
 print(f"  ARN:     {response['guardrailArn']}")
 print(f"  Version: {response['version']}")
+----------------------
+
+import boto3
+from botocore.exceptions import ClientError
+
+def create_guardrail_version(guardrail_id, description=None):
+    """
+    Creates a numbered version (like version 1) from the DRAFT version.
+    
+    Args:
+        guardrail_id (str): The ID of the guardrail
+        description (str): Optional description for the version
+    
+    Returns:
+        dict: Response containing the new version details
+    """
+    try:
+        bedrock_client = boto3.client('bedrock')
+        
+        params = {
+            'guardrailIdentifier': guardrail_id
+        }
+        
+        if description:
+            params['description'] = description
+        
+        response = bedrock_client.create_guardrail_version(**params)
+        
+        print(f"Created version {response['version']} for guardrail {response['guardrailId']}")
+        return response
+        
+    except ClientError as e:
+        print(f"Error creating guardrail version: {e}")
+        raise
