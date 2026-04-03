@@ -115,7 +115,7 @@ from botocore.exceptions import ClientError
 
 def create_guardrail_version(guardrail_id, description=None):
     """
-    Creates a numbered version (like version 1) from the DRAFT version.
+    Creates a numbered version (1, 2, 3, etc.) from the DRAFT version.
     
     Args:
         guardrail_id (str): The ID of the guardrail
@@ -142,3 +142,17 @@ def create_guardrail_version(guardrail_id, description=None):
     except ClientError as e:
         print(f"Error creating guardrail version: {e}")
         raise
+
+# Example usage
+if __name__ == "__main__":
+    # Replace with your actual guardrail ID
+    guardrail_id = "your-guardrail-id-here"
+    
+    # Create version 1 from DRAFT
+    version_response = create_guardrail_version(
+        guardrail_id=guardrail_id,
+        description="First production version"
+    )
+    
+    print(f"New version created: {version_response['version']}")
+    print(f"Guardrail ID: {version_response['guardrailId']}")
