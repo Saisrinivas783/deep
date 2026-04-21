@@ -1,0 +1,350 @@
+# AWS Kendra Healthcare Synonyms (SOLR format)
+# Source: finalized_pipeline_result_0416.xlsx
+# Extracted from: Description, Plain Language (Display Label), Treatment Categories
+#
+# Format reference:
+#   Equivalent synonyms:  term1, term2, term3
+#     (any term in the list maps to any other — bidirectional)
+#   Explicit mapping:     query1, query2 => canonical1, canonical2
+#     (left side expands to right side — one-way)
+#
+# Lines starting with '#' are comments. Blank lines are ignored.
+
+# ========================================================================
+# SECTION 1: HEALTHCARE ABBREVIATIONS & ACRONYMS
+# ========================================================================
+
+A1C, hba1c, hemoglobin a1c
+ABA, applied behavior analysis, applied behavioral analysis
+ACE, angiotensin i-converting enzyme
+ACH, adrenocorticotropic hormone
+ACL, anterior cruciate ligament
+ACTH, adrenocorticotropic hormone
+ADD, attention deficit disorder
+ADHD, attention deficit hyperactivity disorder
+AED, automated external defibrillator
+AIDS, acquired immunodeficiency syndrome
+ALP, alkaline phosphatase
+ALS, amyotrophic lateral sclerosis
+ALT, alanine amino transferase, alanine aminotransferase
+APC, activated protein c
+ASO, antistreptolysin o
+AST, aspartate amino transferase, aspartate aminotransferase
+BMI, body mass index
+BMP, basic metabolic panel
+BP, blood pressure
+BUN, blood urea nitrogen
+BiPAP, bilevel positive airway pressure
+C-13, h pylori
+C-Section, caesarean, cesarean section
+CABG, bypass surgery, coronary artery bypass graft, coronary bypass
+CAT, computed axial tomography, ct scan
+CBC, complete blood count
+CCP, cyclic citrullinated peptide
+CD4, t cell count
+CDT, carbohydrate deficient transferrin
+CHF, congestive heart failure
+CK, creatine kinase, creatine phosphokinase
+CMP, comprehensive metabolic panel
+CMT, chiropractic manipulative treatment
+CMV, cytomegalovirus
+COPD, chronic obstructive pulmonary disease
+CPAP, continuous positive airway pressure
+CPK, creatine kinase, creatine phosphokinase, creatinine phosphokinase, total creatine phosphokinase
+CPR, cardiopulmonary resuscitation
+CT, cat scan, computed tomography, computerized axial tomography
+CTA, computed tomography angiography, ct angiography
+CV, cardiovascular
+CVA, cerebrovascular accident, stroke
+D&C, dilation and curettage
+DEXA, dual energy x-ray absorptiometry
+DHEA, dehydroepiandrosterone
+DHEA-S, dehydroepiandrosterone-sulfate
+DM, diabetes mellitus
+DNR, do not resuscitate
+DT, diphtheria and tetanus toxoids, diphtheria tetanus
+DVT, deep vein thrombosis
+DX, diagnosis
+ECG, ekg, electrocardiogram
+ED, emergency department, emergency room
+EEG, electroencephalogram
+EGD, esophagogastroduodenoscopy, upper endoscopy
+EKG, ecg, electrocardiogram
+EMG, electromyogram, electromyography
+ENA, extractable nuclear antigen
+ENT, ear nose and throat, otolaryngology
+ER, emergency department, emergency room
+ERCP, endoscopic retrograde cholangiopancreatography
+FFP, fresh frozen plasma
+FSH, follicle stimulating hormone
+G6PD, glucose-6-phosphate dehydrogenase
+GERD, acid reflux, gastroesophageal reflux disease
+GGT, gamma-glutamyl transferase
+GI, gastrointestinal, upper gastrointestinal
+GU, genitourinary
+GYN, gynecology
+HCG, chorionic gonadotropin, human chorionic gonadotropin
+HDL, good cholesterol, high density lipoprotein
+HIV, human immunodeficiency virus
+HLD, high cholesterol, hyperlipidemia
+HPV, human papilloma virus, human papillomavirus
+HTN, high blood pressure, hypertension
+HVA, homovanillic acid
+HbA1c, a1c, glycated hemoglobin, hemoglobin a1c
+IBD, inflammatory bowel disease
+IBS, irritable bowel syndrome
+ICU, intensive care unit
+IM, intramuscular
+IMRT, intensity modulated radiation therapy, intensity modulated radiation treatment
+ITD, internal tandem duplication
+IUD, intrauterine device
+IV, intravenous
+LASIK, laser assisted in situ keratomileusis
+LCL, lateral collateral ligament
+LDH, lactate dehydrogenase, lactic dehydrogenase, lactose dehydrogenase
+LDL, bad cholesterol, low density lipoprotein
+LFT, liver function test
+LH, luteinizing hormone
+MCL, medial collateral ligament
+MI, heart attack, myocardial infarction
+MMR, measles mumps rubella, mumps and rubella, rubella
+MMRV, measles mumps rubella varicella, rubella and varicella, varicella vaccine
+MRA, magnetic resonance angiography
+MRI, magnetic resonance imaging
+MS, multiple sclerosis
+NICU, neonatal intensive care unit
+NPO, nothing by mouth
+OA, osteoarthritis
+OB, obstetrics
+OBGYN, ob/gyn, obstetrics and gynecology
+OCD, obsessive compulsive disorder
+OR, operating room
+OT, occupational therapy
+OTC, over the counter
+PAMG-1, placental alpha microglobulin-1
+PAPP-A, pregnancy-associated plasma protein-a
+PCL, posterior cruciate ligament
+PCP, phencyclidine, primary care physician, primary care provider
+PE, pulmonary embolism
+PET, positron emission tomography
+PO, by mouth, oral
+PRA, cytotoxic percent reactive antibody
+PRN, as needed
+PRP-OMP, hib immunization
+PSA, prostate specific antigen, provider detects the prostate specific antigen
+PT, physical therapy
+PT/INR, prothrombin time
+PTSD, post traumatic stress disorder
+PTT, partial thromboplastin time
+RA, rheumatoid arthritis
+RBC, red blood cell, red blood count
+RSV, antibody injection for respiratory syncytial virus, nasal respiratory syncytial virus, respiratory syncytial virus
+Rx, prescription
+SHBG, sex hormone binding globulin
+SNP, copy number and single nucleotide polymorphism
+SPECT, single photon emission computed tomography
+SQ, subcutaneous
+ST, speech therapy
+STD, sexually transmitted disease, sti
+STI, sexually transmitted infection, std
+STR, comparative analysis using short tandem repeat
+SX, surgery, symptom
+T3, assay triiodothyronine, free triiodothyronine, total triiodothyronine, triiodothyronine
+T4, thyroxine
+TB, tuberculosis
+TBG, thyroxine binding globulin
+TBI, traumatic brain injury
+TENS, transcutaneous electrical nerve stimulation
+TMJ, temporomandibular joint
+TPI, trigger point injection
+TSH, thyroid stimulating hormone
+TSI, thyroid stimulating immunoglobulin
+TTI, tissue thromboplastin inhibition
+TX, treatment
+Tdap, tetanus diphtheria pertussis
+URI, upper respiratory infection
+US, sonography, ultrasonography, ultrasound
+UTI, urinary tract infection
+UV, ultraviolet
+UVA, light
+V617F, val617phe
+VIP, vasoactive intestinal peptide
+VMA, vanillylmandelic acid
+VW, von willebrand
+WBC, differential white blood cell, white blood cell, white blood count
+X-Ray, radiograph, xray
+
+# ========================================================================
+# SECTION 2: BODY PARTS & ANATOMICAL TERMS
+# ========================================================================
+
+abdomen, belly, stomach, tummy, midsection, gut area
+chest, thorax, rib cage, pecs
+pelvis, hip area
+groin, inguinal region, crotch
+back, spine, backbone, vertebral column, spinal column
+lower back, lumbar, lumbar spine, lower spine
+upper back, thoracic spine, upper spine
+neck, cervical spine
+tailbone, coccyx
+buttocks, glutes, rear, behind, bottom
+head, cranium, skull
+brain, cerebrum
+scalp, head skin
+eye, ocular, ophthalmic, vision
+ear, otic, auditory, hearing
+nose, nasal, nostril
+sinus, sinus cavity, paranasal
+mouth, oral, oral cavity
+lip, labial
+tongue, lingual
+throat, pharynx
+voicebox, voice box, larynx
+windpipe, trachea
+tooth, dental, dentition
+gum, gingiva
+jaw, mandible, maxilla, jawbone
+cheek, buccal
+arm, upper limb, upper extremity
+upper arm, bicep, tricep
+forearm, lower arm
+shoulder, glenohumeral joint, rotator cuff area
+armpit, axilla, underarm
+elbow, elbow joint
+wrist, wrist joint, carpal
+hand, manual
+palm, palmar
+finger, digit
+leg, lower limb, lower extremity
+thigh, upper leg, quadriceps, quads, hamstring
+calf, lower leg, shin
+hip, hip joint
+knee, knee joint, kneecap, patella
+ankle, ankle joint
+foot, pedal
+sole, bottom of foot, plantar
+big toe, great toe, hallux
+heart, cardiac, coronary
+lung, pulmonary, pulmonic, respiratory
+kidney, renal
+liver, hepatic
+gallbladder, gall bladder, biliary, bile duct
+pancreas, pancreatic
+spleen, splenic
+thyroid, thyroid gland
+adrenal, adrenal gland
+pituitary, pituitary gland
+prostate, prostate gland, prostatic
+bladder, urinary bladder
+uterus, womb, uterine
+ovary, ovarian
+vagina, vaginal
+vulva, vulvar
+breast, mammary
+nipple, areola
+testicle, testis, ball
+scrotum, scrotal
+penis, penile
+esophagus, esophageal, food pipe, gullet
+gastric, gastro
+bowel, intestine, gut
+small intestine, small bowel, duodenum, jejunum, ileum
+large intestine, colon, large bowel
+rectum, rectal
+anus, anal
+appendix, appendiceal
+urethra, urethral
+ureter, ureteral
+nerve, neural, nervous
+spinal cord, central nervous system cord
+bone, skeletal, osseous
+muscle, muscular
+cartilage, cartilaginous
+joint, articular
+skin, cutaneous, dermal, dermis, epidermis
+nail, fingernail, toenail
+blood, hematologic
+blood vessel, vascular, vasculature
+artery, arterial
+vein, venous
+lymph node, lymph gland, lymphatic
+whole body, full body, entire body, total body
+torso, trunk
+extremity, limb
+
+# ========================================================================
+# SECTION 3: PROCEDURES, TESTS & CLINICAL TERMS
+# ========================================================================
+
+cat scan, ct scan, computed tomography, computerized tomography
+mri, magnetic resonance imaging
+x-ray, xray, radiograph, radiography, x ray
+ultrasound, sonography, ultrasonography, sonogram
+ekg, ecg, electrocardiogram, electrocardiograph
+eeg, electroencephalogram, electroencephalograph
+pet scan, positron emission tomography
+bone density scan, dexa scan, dxa scan, bone density study, bone density test
+colonoscopy, colon exam
+endoscopy, upper endoscopy, egd, esophagogastroduodenoscopy
+mammogram, mammography, breast x-ray
+pap smear, pap test, cervical cancer screening
+biopsy, tissue sample, tissue biopsy
+injection, shot, jab
+immunization, vaccination, vaccine, shot
+physical therapy, pt, physiotherapy
+occupational therapy, ot
+speech therapy, speech language therapy, speech-language pathology
+chemotherapy, chemo
+radiation therapy, radiotherapy, radiation treatment
+dialysis, renal dialysis, kidney dialysis
+sleep study, polysomnography, polysomnogram
+stress test, cardiac stress test, exercise stress test, treadmill test
+blood test, blood work, blood draw, phlebotomy, lab work
+urine test, urinalysis
+stool test, fecal test, fecal exam
+sore throat, strep throat, pharyngitis
+upper respiratory infection, uri, common cold
+urinary tract infection, uti, bladder infection
+high blood pressure, hypertension, htn
+high cholesterol, hyperlipidemia, hld
+heart attack, myocardial infarction, mi
+stroke, cerebrovascular accident, cva, brain attack
+acid reflux, gerd, gastroesophageal reflux, heartburn
+diabetes, diabetes mellitus, dm
+wound closure, wound repair, stitches, sutures
+suture removal, staple removal, stitch removal
+trigger point injection, tpi, muscle knot injection
+yeast infection, candidiasis, vaginal yeast infection
+pink eye, conjunctivitis
+ear infection, otitis, otitis media
+flu, influenza, flu shot, influenza vaccine
+chickenpox, varicella
+shingles, herpes zoster
+german measles, rubella
+regular measles, rubeola, measles
+whooping cough, pertussis
+tetanus shot, tetanus immunization
+well child visit, well baby visit, pediatric checkup, pediatric wellness visit
+annual physical, annual exam, yearly checkup, wellness exam
+office visit, doctor visit, clinic visit, outpatient visit
+emergency room, er, emergency department, ed
+telemedicine, telehealth, virtual visit, video visit
+prescription, rx, medication, meds
+generic drug, generic medication
+brand drug, brand name medication
+copay, copayment
+coinsurance, co-insurance
+deductible, annual deductible
+premium, monthly premium
+in-network, in network, preferred provider, ppo provider
+out-of-network, out of network, non-preferred provider, non-ppo
+prior approval, prior authorization, preauthorization, pre-approval, pre-authorization
+preventive care, preventative care, preventive services
+contrast, with contrast, w/ contrast, with dye, contrast dye
+without contrast, w/o contrast, without dye, no contrast
+inpatient, hospital stay, admitted
+outpatient, ambulatory, day surgery, same day
+
+
+# End of synonyms file
+# Total entries — abbreviations: 159, body parts: 93, procedures: 68
