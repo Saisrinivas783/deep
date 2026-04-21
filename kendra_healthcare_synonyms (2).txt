@@ -118,7 +118,6 @@ OA, osteoarthritis
 OB, obstetrics
 OBGYN, ob/gyn, obstetrics and gynecology
 OCD, obsessive compulsive disorder
-OR, operating room
 OT, occupational therapy
 OTC, over the counter
 PAMG-1, placental alpha microglobulin-1
@@ -163,7 +162,6 @@ TTI, tissue thromboplastin inhibition
 TX, treatment
 Tdap, tetanus diphtheria pertussis
 URI, upper respiratory infection
-US, sonography, ultrasonography, ultrasound
 UTI, urinary tract infection
 UV, ultraviolet
 UVA, light
@@ -178,21 +176,20 @@ X-Ray, radiograph, xray
 # SECTION 2: BODY PARTS & ANATOMICAL TERMS
 # ========================================================================
 
-abdomen, belly, stomach, tummy, midsection, gut area
+abdomen, belly, stomach, tummy, midsection
 chest, thorax, rib cage, pecs
 pelvis, hip area
-groin, inguinal region, crotch
+groin, inguinal region
 back, spine, backbone, vertebral column, spinal column
 lower back, lumbar, lumbar spine, lower spine
 upper back, thoracic spine, upper spine
 neck, cervical spine
 tailbone, coccyx
-buttocks, glutes, rear, behind, bottom
+buttocks, glutes
 head, cranium, skull
 brain, cerebrum
-scalp, head skin
-eye, ocular, ophthalmic, vision
-ear, otic, auditory, hearing
+eye, ocular, ophthalmic
+ear, otic, auditory
 nose, nasal, nostril
 sinus, sinus cavity, paranasal
 mouth, oral, oral cavity
@@ -212,7 +209,6 @@ shoulder, glenohumeral joint, rotator cuff area
 armpit, axilla, underarm
 elbow, elbow joint
 wrist, wrist joint, carpal
-hand, manual
 palm, palmar
 finger, digit
 leg, lower limb, lower extremity
@@ -221,11 +217,10 @@ calf, lower leg, shin
 hip, hip joint
 knee, knee joint, kneecap, patella
 ankle, ankle joint
-foot, pedal
 sole, bottom of foot, plantar
 big toe, great toe, hallux
-heart, cardiac, coronary
-lung, pulmonary, pulmonic, respiratory
+heart, cardiac
+lung, pulmonary, pulmonic
 kidney, renal
 liver, hepatic
 gallbladder, gall bladder, biliary, bile duct
@@ -242,12 +237,12 @@ vagina, vaginal
 vulva, vulvar
 breast, mammary
 nipple, areola
-testicle, testis, ball
+testicle, testis
 scrotum, scrotal
 penis, penile
 esophagus, esophageal, food pipe, gullet
 gastric, gastro
-bowel, intestine, gut
+bowel, intestine
 small intestine, small bowel, duodenum, jejunum, ileum
 large intestine, colon, large bowel
 rectum, rectal
@@ -289,8 +284,7 @@ endoscopy, upper endoscopy, egd, esophagogastroduodenoscopy
 mammogram, mammography, breast x-ray
 pap smear, pap test, cervical cancer screening
 biopsy, tissue sample, tissue biopsy
-injection, shot, jab
-immunization, vaccination, vaccine, shot
+immunization, vaccination, vaccine
 physical therapy, pt, physiotherapy
 occupational therapy, ot
 speech therapy, speech language therapy, speech-language pathology
@@ -329,7 +323,7 @@ annual physical, annual exam, yearly checkup, wellness exam
 office visit, doctor visit, clinic visit, outpatient visit
 emergency room, er, emergency department, ed
 telemedicine, telehealth, virtual visit, video visit
-prescription, rx, medication, meds
+prescription, rx, medication
 generic drug, generic medication
 brand drug, brand name medication
 copay, copayment
@@ -344,7 +338,3 @@ contrast, with contrast, w/ contrast, with dye, contrast dye
 without contrast, w/o contrast, without dye, no contrast
 inpatient, hospital stay, admitted
 outpatient, ambulatory, day surgery, same day
-
-
-# End of synonyms file
-# Total entries — abbreviations: 159, body parts: 93, procedures: 68
