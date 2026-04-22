@@ -158,96 +158,78 @@ X-Ray, radiograph, xray
 # SECTION 2: BODY PARTS & ANATOMICAL TERMS
 # ========================================================================
 
-abdomen, belly, stomach, tummy, midsection
-chest, thorax, rib cage, pecs
-pelvis, hip area
-groin, inguinal region
-back, spine, backbone, vertebral column, spinal column
-lower back, lumbar, lumbar spine, lower spine
-upper back, thoracic spine, upper spine
-neck, cervical spine
-tailbone, coccyx
-buttocks, glutes
-head, cranium, skull
-brain, cerebrum
-eye, ocular, ophthalmic
-ear, otic, auditory
-nose, nasal, nostril
-sinus, sinus cavity, paranasal
-mouth, oral, oral cavity
-lip, labial
-tongue, lingual
-throat, pharynx
-voicebox, voice box, larynx
-windpipe, trachea
-tooth, dental, dentition
-gum, gingiva
-jaw, mandible, maxilla, jawbone
-cheek, buccal
-arm, upper limb, upper extremity
-upper arm, bicep, tricep
-forearm, lower arm
-shoulder, glenohumeral joint, rotator cuff area
-armpit, axilla, underarm
-elbow, elbow joint
-wrist, wrist joint, carpal
-palm, palmar
-finger, digit
-leg, lower limb, lower extremity
-thigh, upper leg, quadriceps, quads, hamstring
-calf, lower leg, shin
-hip, hip joint
-knee, knee joint, kneecap, patella
-ankle, ankle joint
-sole, bottom of foot, plantar
-big toe, great toe, hallux
-heart, cardiac
-lung, pulmonary, pulmonic
-kidney, renal
-liver, hepatic
-gallbladder, gall bladder, biliary, bile duct
-pancreas, pancreatic
-spleen, splenic
-thyroid, thyroid gland
-adrenal, adrenal gland
-pituitary, pituitary gland
-prostate, prostate gland, prostatic
-bladder, urinary bladder
-uterus, womb, uterine
-ovary, ovarian
-vagina, vaginal
-vulva, vulvar
-breast, mammary
-nipple, areola
-testicle, testis
-scrotum, scrotal
-penis, penile
-esophagus, esophageal, food pipe, gullet
-gastric, gastro
-bowel, intestine
-small intestine, small bowel, duodenum, jejunum, ileum
-large intestine, colon, large bowel
-rectum, rectal
-anus, anal
-appendix, appendiceal
-urethra, urethral
-ureter, ureteral
-nerve, neural, nervous
-spinal cord, central nervous system cord
-bone, skeletal, osseous
-muscle, muscular
-cartilage, cartilaginous
-joint, articular
-skin, cutaneous, dermal, dermis, epidermis
-nail, fingernail, toenail
-blood, hematologic
-blood vessel, vascular, vasculature
-artery, arterial
-vein, venous
-lymph node, lymph gland, lymphatic
-whole body, full body, entire body, total body
-torso, trunk
-extremity, limb
+DNA, genes, genetic code, hereditary material
+tissues, body layers, flesh, soft parts
+bones, skeleton, skeletal, frame
+skin, outer layer, surface, covering
+organs, body parts, insides, internals
+heart, ticker, cardiac, pump
+liver, gut organ, detox organ
+brain, noggin, head, mind
+lung, breathing organ, chest organ, airways
+kidney, filtering organ, renal
+chromosomes, genetic strands, hereditary code
+abdomen, belly, tummy, midsection
+spinal bones, backbone, vertebrae, spine
+lower limb, leg, lower extremity
+uterus, womb, baby holder, female organ
+intestine, bowel, gut, guts, insides
+pelvis, hips, hip bones, hip area
+stomach, belly, tummy, gut
+nose, nostril, nasal, snout
+muscles, muscle, body tissue, flesh
+bladder, pee bag, water bag, urinary bag
+thyroid, neck gland, butterfly gland
+nerves, nerve, nerve endings, wiring
+lower spine, lower back, lumbar, tailbone area
+skull, head bone, cranium
+joint, hinge, connecting bone, junction
+glands, gland, hormone producer
+trunk, torso, midsection, core
+arm, upper arm, limb, appendage
+breasts, boobs, chest, bust
+mucous membrane, mucosa, wet lining, inner lining
+lips, mouth lips, oral lips
+prostate, male gland, prostate gland
+fallopian tubes, egg tubes, baby tubes, ovarian tubes
+esophagus, food pipe, swallowing tube, gullet
+spinal cord, spine cord, back cord
+pancreas, sugar gland, insulin organ
+adrenal, stress gland, adrenal gland
+knee, kneecap, knee joint, bend joint
+urethra, pee tube, urinary opening, water pipe
+cervical spine, neck spine, neck bones
+fetus, baby, unborn baby, embryo
+pituitary gland, master gland, brain gland
+sperm, seed, male cells, sperm cells
+placenta, afterbirth, baby sac, baby cushion
+heart muscle, cardiac muscle, pump muscle
+thoracic spine, mid back, upper back, chest spine
+thigh, upper leg, top leg
+throat, gullet, swallowing passage, neck passage
+cartilage, gristle, soft bone, cushion bone
+synovial tissue, joint lining, joint sac, joint cushion
+uterine tissue, womb lining, inner womb layer
+lens, eye lens, focusing part, vision lens
+testicles, testes, balls, male glands
+forearm, lower arm, elbow wrist area
+lower leg, shin, calf, ankle area leg
+tibia, shin bone, lower leg bone
+heel bone, heel, back foot bone
+cornea, front eye, clear eye covering
+foot, feet, tootsies, lower foot
+hair, hair follicle, scalp hair
+rectum, rear end, back passage, bottom passage
+ureter, kidney drain, kidney tube
+connective tissue, body tissue, soft tissue, filler tissue
+kidney stones, bladder stones, urinary stones
+spinal fluid, back fluid, spine liquid, nerve fluid
+sacrum, tailbone, coccyx area, bottom spine
+vertebra, back bone, spinal bone, disk bone
+carotid, neck artery, main neck vessel
+retina, back eye, eye lining, sight lining
+lower limb joint, hip joint, knee area joint
+upper limb joint, shoulder joint, elbow joint
 
 # ========================================================================
 # SECTION 3: PROCEDURES, TESTS & CLINICAL TERMS
